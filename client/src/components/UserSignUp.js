@@ -64,7 +64,7 @@ export default class UserSignUp extends Component {
                   <input
                     id="passwordConfirm"
                     name="passwordConfirm"
-                    type="passwordConfirm"
+                    type="password"
                     value={passwordConfirm}
                     onChange={this.change}
                     placeholder="Confirm Password" />

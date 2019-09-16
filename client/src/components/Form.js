@@ -1,3 +1,4 @@
+// file originally from the Team Treehouse course "React Authentication" by Guil Hernandez
 import React from 'react';
 
 export default (props) => {

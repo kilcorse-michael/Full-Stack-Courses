@@ -21,7 +21,7 @@ export default class CreateCourse extends Component{
     const { context } = this.props;
 
     return(
-      <div class="bounds course--detail">
+      <div className="bounds course--detail">
         <h1>Create Course</h1>
         <Form
         cancel={this.cancel}
@@ -31,8 +31,8 @@ export default class CreateCourse extends Component{
         elements={() => (
           <React.Fragment>
             <div className="grid-66">
-              <div class="course--header">
-              <h4 class="course--label">Course</h4>
+              <div className="course--header">
+              <h4 className="course--label">Course</h4>
                 <div>
                   <input
                     id="title"
@@ -45,7 +45,7 @@ export default class CreateCourse extends Component{
                 </div>
                 <p>by{' '+context.authenticatedUser.firstName + ' ' + context.authenticatedUser.lastName}</p>
               </div>
-              <div class="course--description">
+              <div className="course--description">
                 <div>
                   <textarea
                     id="description"
@@ -58,10 +58,10 @@ export default class CreateCourse extends Component{
                 </div>
               </div>
             </div>
-            <div class="grid-25 grid-right">
-              <div class="course--stats">
-                <ul class="course--stats--list">
-                  <li class="course--stats--list--item">
+            <div className="grid-25 grid-right">
+              <div className="course--stats">
+                <ul className="course--stats--list">
+                  <li className="course--stats--list--item">
                     <h4>Estimated Time</h4>
                     <div>
                       <input
@@ -74,7 +74,7 @@ export default class CreateCourse extends Component{
                       />
                     </div>
                   </li>
-                  <li class="course--stats--list--item">
+                  <li className="course--stats--list--item">
                     <h4>Materials Needed</h4>
                     <textarea
                       id="materialsNeeded"

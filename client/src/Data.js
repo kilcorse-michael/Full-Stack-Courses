@@ -93,14 +93,12 @@ async getCourseDetails(id){
 //POST request that adds a new course to the database along with the credentials needed for access
 async createCourse(course, {emailAddress, password}){
   const response = await this.api('/courses/', 'POST', course, true, {emailAddress, password});
-  console.log(emailAddress);
-  console.log(password)
   if(response.status === 201){
     console.log("Course was Created!")
     return [];
   }
-  else if (response.status === 401) {
-    return await response.json();
+  else if (response.status === 401 || response.status === 400) {
+    return response.json();
   }
   else {
     throw new Error();
@@ -110,10 +108,8 @@ async createCourse(course, {emailAddress, password}){
 
 //PUT request to update the details of a specific course in the database
 async updateCourseDetail(course, id, {emailAddress, password}){
-  console.log(emailAddress)
   const response = await this.api('/courses/'+id, 'PUT', course, true, {emailAddress, password});
   if(response.status === 204){
-    console.log("Course was Updated! Really?");
     return [];
   }
   else if (response.status === 401 || response.status === 400) {

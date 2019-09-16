@@ -53,7 +53,6 @@ render(){
      emailAddress = context.authenticatedUser.emailAddress
      password = context.userPassword
    }
-  console.log(context);
   return(
     <div>
       <div className="actions--bar">

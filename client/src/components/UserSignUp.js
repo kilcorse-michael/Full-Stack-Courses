@@ -107,7 +107,7 @@ export default class UserSignUp extends Component {
         if(errorArr.length){
           return this.setState({ errors: errorArr });
         } else {
-          console.log(`201- ${firstName} is succesfully signed up and authenticated`);
+          console.log(`201- ${firstName} is succesfully signed up!`);
           context.actions.signIn(emailAddress, password)
             .then(() => {
               this.props.history.push('/');

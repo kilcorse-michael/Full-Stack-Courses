@@ -4,7 +4,6 @@ import Form from './Form.js';
 
 export default class UpdateCourse extends Component{
   state = {
-    details: [],
     title: '',
     description: '',
     estimatedTime: '',
@@ -20,41 +19,35 @@ async componentDidMount(){
   await context.data.getCourseDetails(match.params.id)
     .then(details=>{
       const name = details.Creator.firstName + ' ' + details.Creator.lastName;
-      const title = details.title;
-      const description = details.description;
-      let items;
-      let time;
-      if(details.materialsNeeded != null){
-        items = details.materialsNeeded.split('*');
-        items.shift();
-      } else{
-        items = ''
-      }
-      if(details.estimatedTime != null){
-        time = details.estimatedTime
-      } else{
-        items = ''
-      }
+
+      const {
+              title,
+              description,
+              estimatedTime,
+              materialsNeeded
+            } = details;
+
       this.setState({
-        details,
         title,
         description,
-        name,
-        time,
-        items
+        estimatedTime,
+        materialsNeeded,
+        name
       })
     })
 }
 
   render(){
-    const {title,
+    const {
+           title,
            description,
            estimatedTime,
-           name,
            materialsNeeded,
-           errors} = this.state;
+           name,
+           errors
+          } = this.state;
     return(
-      <div class="bounds course--detail">
+      <div className="bounds course--detail">
         <h1>Update Course</h1>
         <div>
           <Form
@@ -65,7 +58,7 @@ async componentDidMount(){
           elements={() => (
             <React.Fragment>
             <div className="grid-66">
-            <div class="course--header">
+            <div className="course--header">
               <div>
                 <input
                   id="title"
@@ -78,7 +71,7 @@ async componentDidMount(){
                 </div>
               <p>by {name}</p>
             </div>
-            <div class="course--description">
+            <div className="course--description">
               <div>
                 <textarea
                   id="description"
@@ -92,10 +85,10 @@ async componentDidMount(){
             </div>
             </div>
 
-            <div class="grid-25 grid-right">
-              <div class="course--stats">
-                <ul class="course--stats--list">
-                  <li class="course--stats--list--item">
+            <div className="grid-25 grid-right">
+              <div className="course--stats">
+                <ul className="course--stats--list">
+                  <li className="course--stats--list--item">
                     <h4>Estimated Time</h4>
                     <div>
                       <input
@@ -108,7 +101,7 @@ async componentDidMount(){
                       />
                     </div>
                   </li>
-                  <li class="course--stats--list--item">
+                  <li className="course--stats--list--item">
                     <h4>Materials Needed</h4>
                     <div>
                       <textarea

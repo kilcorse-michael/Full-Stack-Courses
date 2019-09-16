@@ -111,7 +111,6 @@ export default class CreateCourse extends Component{
     const {title, description, estimatedTime, materialsNeeded} = this.state;
     const {emailAddress} = context.authenticatedUser;
     const password = context.userPassword;
-    const {from} = this.props.location.state || {from: {pathname: '/'}};
     const course = {
       title,
       description,

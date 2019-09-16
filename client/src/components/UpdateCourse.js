@@ -143,10 +143,9 @@ async componentDidMount(){
   }
 
   submit = () => {
-    const {context, history} = this.props;
+    const {context} = this.props;
     const {title, description, estimatedTime, materialsNeeded} = this.state;
     const {id} = this.state.details;
-    const {from} = this.props.location.state || {from: {pathname: '/courses/'+id}};
     const {emailAddress} = context.authenticatedUser;
     const password = context.userPassword;
     const course = {

@@ -8,7 +8,6 @@ export default class Courses extends Component {
     const { context } = this.props;
     await context.data.getCourses()
       .then(courses =>{
-         console.log(courses);
          this.setState({
            courses
          })
@@ -18,7 +17,6 @@ export default class Courses extends Component {
 
   render(){
     const {courses} = this.state;
-    console.log(courses)
     return(
       <div className="bounds">
       {courses.map((course, index)=>

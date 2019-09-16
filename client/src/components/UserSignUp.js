@@ -8,6 +8,7 @@ export default class UserSignUp extends Component {
     lastName: '',
     emailAddress: '',
     password: '',
+    passwordConfirm: '',
     errors: [],
   }
 
@@ -17,6 +18,7 @@ export default class UserSignUp extends Component {
       lastName,
       emailAddress,
       password,
+      passwordConfirm,
       errors,
     } = this.state;
 
@@ -59,6 +61,13 @@ export default class UserSignUp extends Component {
                   value={password}
                   onChange={this.change}
                   placeholder="Password" />
+                  <input
+                    id="passwordConfirm"
+                    name="passwordConfirm"
+                    type="passwordConfirm"
+                    value={passwordConfirm}
+                    onChange={this.change}
+                    placeholder="Confirm Password" />
               </React.Fragment>
             )} />
           <p>
@@ -73,6 +82,7 @@ export default class UserSignUp extends Component {
     const name = event.target.name;
     const value = event.target.value;
 
+
     this.setState(() => {
       return {
         [name]: value
@@ -83,7 +93,12 @@ export default class UserSignUp extends Component {
   submit = () => {
     //using destructring assingment extracted these values from props and state object
     const { context } = this.props;
-    const {firstName, lastName, emailAddress, password } = this.state;
+    const {firstName, lastName, emailAddress, password, passwordConfirm} = this.state;
+
+    //conditional to ensure that both passwords match
+    if(password !== passwordConfirm){
+      return this.setState({ errors: ['Please make sure your passwords match!']})
+    }
     //create a user object with name... password as properties
     const user = {firstName, lastName, emailAddress, password};
     context.data.createUser(user)

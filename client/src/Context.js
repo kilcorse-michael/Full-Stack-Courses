@@ -92,10 +92,11 @@ export class Provider extends Component {
 
 export const Consumer = Context.Consumer;
 
-/**
+/*
  * A higher-order component that wraps the provided component in a Context Consumer component.
  * @param {class} Component - A React component.
  * @returns {function} A higher-order component.
+ * method from the Treehouse React Authentication course by Guil Hernandez
  */
 
 export default function withContext(Component) {

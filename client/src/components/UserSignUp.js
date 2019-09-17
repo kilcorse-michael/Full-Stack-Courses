@@ -120,6 +120,7 @@ export default class UserSignUp extends Component {
   }
 
   cancel = () => {
-    this.props.history.push('/');
+    const { from } = this.props.location.state || { from: { pathname: '/' } };
+    this.props.history.push(from);
   }
 }

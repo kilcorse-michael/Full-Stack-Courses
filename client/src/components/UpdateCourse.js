@@ -9,6 +9,7 @@ export default class UpdateCourse extends Component{
     estimatedTime: '',
     name: '',
     materialsNeeded: '',
+    id: '',
     errors: []
   }
 
@@ -24,7 +25,8 @@ async componentDidMount(){
               title,
               description,
               estimatedTime,
-              materialsNeeded
+              materialsNeeded,
+              id
             } = details;
 
       this.setState({
@@ -32,7 +34,8 @@ async componentDidMount(){
         description,
         estimatedTime,
         materialsNeeded,
-        name
+        name,
+        id
       })
     })
 }
@@ -164,6 +167,8 @@ async componentDidMount(){
   }
 
   cancel = () => {
-    this.props.history.push('/');
+    const { id } = this.state;
+    const { from } = this.props.location.state || { from: { pathname: `/courses/${id}` } };
+    this.props.history.push(from);
   }
 }

@@ -19,7 +19,6 @@ async componentDidMount(){
       if(details === 404){
         return this.props.history.push('/*/notfound')
       }
-      const creator = details.Creator;
       const name = details.Creator.firstName + ' ' + details.Creator.lastName;
       if(context.authenticatedUser != null){
         if(details.Creator.id === context.authenticatedUser.id){
@@ -39,7 +38,6 @@ async componentDidMount(){
       }
       this.setState({
         details,
-        creator,
         name
       })
     })

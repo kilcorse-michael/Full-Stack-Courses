@@ -35,6 +35,7 @@ export default class Data {
     const response = await this.api(`/users`, 'GET', null, true, {emailAddress, password});
     //if the status is 200 'ok' then return the response data converted from json
     if (response.status === 200) {
+      console.log(response + 1)
       return response.json().then(data => data);
     }
     //else return null

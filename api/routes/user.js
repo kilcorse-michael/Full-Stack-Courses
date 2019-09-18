@@ -15,7 +15,7 @@ const emailValidator = async (req, res, next) => {
   if(emailRegX.test(user.emailAddress)){
     next();
   } else {
-    res.status(400).json({error: 'Please Check your Email Address!'});
+    res.status(400).json({errors: 'Please provide an accurate email address!'});
   }
 };
 
@@ -82,6 +82,7 @@ router.get('/', authenticateUser, async(req, res)=>{
 //POST request to create a new user
 router.post('/', emailValidator, async(req, res)=>{
   const user = req.body;
+  console.log(user);
   try{
     const checkUser = await User.findOne({
       where:{

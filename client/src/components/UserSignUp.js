@@ -22,6 +22,9 @@ export default class UserSignUp extends Component {
       errors,
     } = this.state;
 
+    const validateEmpty = (firstName, lastName, emailAddress, password) =>{
+
+    }
     return (
       <div className="bounds">
         <div className="grid-33 centered signin">
@@ -93,19 +96,37 @@ export default class UserSignUp extends Component {
   submit = () => {
     //using destructring assingment extracted these values from props and state object
     const { context } = this.props;
+    const {errors} = context;
     const {firstName, lastName, emailAddress, password, passwordConfirm} = this.state;
+    let errorArr = [];
+    if(firstName === ''){
+      errorArr.push('Please check your first name!');
+    }
+    if(lastName === ''){
+      errorArr.push('Please check your last name!');
+    }
+    if(emailAddress === ''){
+      errorArr.push('Please check your email address!');
+    }
+    if(password === ''){
+      errorArr.push('Please check your password');
+    }
 
     //conditional to ensure that both passwords match
     if(password !== passwordConfirm){
-      return this.setState({ errors: ['Please make sure your passwords match!']})
+      errorArr.push('Please make sure your passwords match!');
+    }
+
+    if(errorArr.length){
+      return this.setState({errors: errorArr})
     }
     //create a user object with name... password as properties
     const user = {firstName, lastName, emailAddress, password};
     context.data.createUser(user)
-      .then(errors =>{
-        const errorArr = Object.values(errors)
+      .then((errors) =>{
+        errorArr.push(Object.values(errors));
         if(errorArr.length){
-          return this.setState({ errors: errorArr });
+          this.setState({ errors: errorArr });
         } else {
           console.log(`201- ${firstName} is succesfully signed up!`);
           context.actions.signIn(emailAddress, password)

@@ -22,9 +22,6 @@ export default class UserSignUp extends Component {
       errors,
     } = this.state;
 
-    const validateEmpty = (firstName, lastName, emailAddress, password) =>{
-
-    }
     return (
       <div className="bounds">
         <div className="grid-33 centered signin">
@@ -98,13 +95,12 @@ export default class UserSignUp extends Component {
     const { context } = this.props;
     const {firstName, lastName, emailAddress, password, passwordConfirm, errors} = this.state;
     let errorArr = [];
+
     if(errors.length){
       errors.length = 0
     }
     if(firstName === ''){
       errorArr.push('Please check your first name!');
-    } else {
-
     }
     if(lastName === ''){
       errorArr.push('Please check your last name!');

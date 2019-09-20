@@ -108,7 +108,7 @@ export default class CreateCourse extends Component{
 
   submit = () => {
     const {context} = this.props;
-    const {title, description, estimatedTime, materialsNeeded} = this.state;
+    const {title, description, estimatedTime, materialsNeeded, errors} = this.state;
     const {emailAddress} = context.authenticatedUser;
     const password = context.userPassword;
     let errorArr = [];
@@ -118,6 +118,9 @@ export default class CreateCourse extends Component{
       estimatedTime,
       materialsNeeded
     }
+    if(errors.length){
+      errors.length = 0;
+    }
     if(title === ''){
       errorArr.push('Please provide a title for the course!')
     }
@@ -125,14 +128,12 @@ export default class CreateCourse extends Component{
       errorArr.push('Please provide a description for the course!')
     }
     if(errorArr.length){
-      this.setState({errors: errorArr})
+      return this.setState({errors: errorArr})
     }
     context.actions.createCourse(course, {emailAddress, password})
       .then(errors =>{
-        if(errorArr.length){
-          this.setState(()=>{
-            return { errors: [errorArr] };
-          })
+        if(Object.values(errors).length){
+          this.setState({ errors: Object.values(errors)});
         } else {
           console.log(`Success!- ${title} is succesfully Created!`);
           this.props.history.push('/');

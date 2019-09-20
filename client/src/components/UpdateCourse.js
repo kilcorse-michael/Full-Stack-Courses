@@ -150,6 +150,9 @@ async componentDidMount(){
       estimatedTime,
       materialsNeeded
     }
+    if(errors.length){
+      errors.length = 0;
+    }
     if(title === ''){
       errorArr.push('Please Provide a title!');
     }

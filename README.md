@@ -13,8 +13,14 @@ $ cd/api
  and run
  ```
 :api $ npm install
+:api $ npm run seed
 :api $ npm start
  ```
+ This will:
+ * Install the dev dependencies
+ * Seed the database with initial data
+ * Start the API on a local server
+ 
  Open another terminal and navigate to the client directory:
  ```
 $ cd/client
@@ -25,4 +31,4 @@ $ cd/client
 :client $ npm start
 ```
 This should open the browser and begin running the client side on localhost:3000 and the api
-running on localhost:5000 
+running on localhost:5000

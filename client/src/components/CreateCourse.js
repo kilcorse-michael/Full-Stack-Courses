@@ -111,15 +111,24 @@ export default class CreateCourse extends Component{
     const {title, description, estimatedTime, materialsNeeded} = this.state;
     const {emailAddress} = context.authenticatedUser;
     const password = context.userPassword;
+    let errorArr = [];
     const course = {
       title,
       description,
       estimatedTime,
       materialsNeeded
     }
+    if(title === ''){
+      errorArr.push('Please provide a title for the course!')
+    }
+    if(description === ''){
+      errorArr.push('Please provide a description for the course!')
+    }
+    if(errorArr.length){
+      this.setState({errors: errorArr})
+    }
     context.actions.createCourse(course, {emailAddress, password})
       .then(errors =>{
-        const errorArr = Object.values(errors);
         if(errorArr.length){
           this.setState(()=>{
             return { errors: [errorArr] };
@@ -131,7 +140,7 @@ export default class CreateCourse extends Component{
       }).catch(err =>{
         console.log(err);
         this.setState(()=>{
-          return {errors: [Object.values(err)]}
+          return {errors: [err]}
         })
       });
   }

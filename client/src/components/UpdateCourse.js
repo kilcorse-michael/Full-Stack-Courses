@@ -140,23 +140,29 @@ async componentDidMount(){
 
   submit = () => {
     const {context} = this.props;
-    const {title, description, estimatedTime, materialsNeeded} = this.state;
-    const {id} = this.state.details;
+    const {title, description, estimatedTime, materialsNeeded, id, errors} = this.state;
     const {emailAddress} = context.authenticatedUser;
     const password = context.userPassword;
+    let errorArr = [];
     const course = {
       title,
       description,
       estimatedTime,
       materialsNeeded
     }
+    if(title === ''){
+      errorArr.push('Please Provide a title!');
+    }
+    if(description === ''){
+      errorArr.push('Please Provide a description!');
+    }
+    if(errorArr.length){
+      return this.setState({errors: errorArr})
+    }
     context.actions.updateCourse(course, id, {emailAddress, password})
       .then(errors =>{
-        const errorArr = Object.values(errors);
-        if(errorArr.length){
-          this.setState(()=>{
-            return { errors: errorArr };
-          })
+        if(Object.values(errors).length){
+          this.setState({ errors: Object.values(errors) });
         } else {
           console.log(`Success!- ${title} is succesfully Updated!`);
           this.props.history.push('/courses/'+id);

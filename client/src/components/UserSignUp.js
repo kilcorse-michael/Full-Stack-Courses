@@ -9,7 +9,7 @@ export default class UserSignUp extends Component {
     emailAddress: '',
     password: '',
     passwordConfirm: '',
-    errors: [],
+    errors: []
   }
 
   render() {
@@ -96,11 +96,15 @@ export default class UserSignUp extends Component {
   submit = () => {
     //using destructring assingment extracted these values from props and state object
     const { context } = this.props;
-    const {errors} = context;
-    const {firstName, lastName, emailAddress, password, passwordConfirm} = this.state;
+    const {firstName, lastName, emailAddress, password, passwordConfirm, errors} = this.state;
     let errorArr = [];
+    if(errors.length){
+      errors.length = 0
+    }
     if(firstName === ''){
       errorArr.push('Please check your first name!');
+    } else {
+
     }
     if(lastName === ''){
       errorArr.push('Please check your last name!');
@@ -123,10 +127,9 @@ export default class UserSignUp extends Component {
     //create a user object with name... password as properties
     const user = {firstName, lastName, emailAddress, password};
     context.data.createUser(user)
-      .then((errors) =>{
-        errorArr.push(Object.values(errors));
-        if(errorArr.length){
-          this.setState({ errors: errorArr });
+      .then(errors =>{
+        if(Object.values(errors).length){
+          this.setState({ errors: Object.values(errors) });
         } else {
           console.log(`201- ${firstName} is succesfully signed up!`);
           context.actions.signIn(emailAddress, password)

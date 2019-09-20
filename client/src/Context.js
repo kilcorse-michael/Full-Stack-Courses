@@ -67,6 +67,7 @@ export class Provider extends Component {
   createCourse = async (course, {emailAddress, password}) => {
     const createdCourse = await this.data.createCourse(course, {emailAddress, password});
     if(createdCourse){
+      console.log(createdCourse);
       return createdCourse;
       };
   }
